@@ -6,6 +6,12 @@ Arduino library voor BME280 sensor via I2C
 2. Open Arduino IDE.
 3. Ga naar **Sketch → Include Library → Add .ZIP Library…**
 4. Selecteer de gedownloade ZIP.
+## Functies
+
+- `begin()` – Start de sensor
+- `getTemperature()` – Temperatuur in °C
+- `getPressure()` – Druk in hPa
+- `getHumidity()` – Vochtigheid in %RH
 ## Gebruik
 
 ```cpp
@@ -33,9 +39,4 @@ void loop() {
 ### 📄 Overzicht van functies
 
 ```markdown
-## Functies
 
-- `begin()` – Start de sensor
-- `getTemperature()` – Temperatuur in °C
-- `getPressure()` – Druk in hPa
-- `getHumidity()` – Vochtigheid in %RH
