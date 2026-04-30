@@ -20,7 +20,7 @@ Arduino library voor BME280 sensor via I2C
 MyBME280 sensor;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   if (!sensor.begin()) {
     Serial.println("Sensor niet gevonden!");
     while (1);
