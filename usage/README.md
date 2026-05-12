@@ -17,7 +17,6 @@ Arduino library voor BME280 sensor via I2C
 ```cpp
 #include <MyBME280.h>
 
-MyBME280 sensor;
 
 void setup() {
   Serial.begin(9600);
