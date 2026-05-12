@@ -14,8 +14,8 @@ function getStats(values) {
 
 function formatStats(values, suffix) {
     const stats = getStats(values);
-    if (!stats) return "Geen data";
-    return `Min: ${stats.min.toFixed(1)}${suffix} | Max: ${stats.max.toFixed(1)}${suffix} | Gem.: ${stats.avg.toFixed(1)}${suffix}`;
+    if (!stats) return "No data";
+    return `Min: ${stats.min.toFixed(1)}${suffix} | Max: ${stats.max.toFixed(1)}${suffix} | Avg: ${stats.avg.toFixed(1)}${suffix}`;
 }
 
 function updateComfortStatus(tempValues, humValues) {
@@ -25,7 +25,7 @@ function updateComfortStatus(tempValues, humValues) {
 
     if (lastTemp == null || lastHum == null) {
         badge.className = "badge badge-secondary";
-        badge.textContent = "Onvoldoende data";
+        badge.textContent = "Insufficient data";
         return;
     }
     if (lastTemp >= 18 && lastTemp <= 25 && lastHum >= 35 && lastHum <= 60) {
@@ -33,7 +33,7 @@ function updateComfortStatus(tempValues, humValues) {
         badge.textContent = "Comfort";
     } else {
         badge.className = "badge badge-warning";
-        badge.textContent = "Actief";
+        badge.textContent = "Active";
     }
 }
 
@@ -72,21 +72,21 @@ function createChart(canvasId, label, values, color) {
 document.getElementById("tempStats").textContent = formatStats(temperaturen, TEMP_UNIT_LABEL);
 document.getElementById("vochtStats").textContent = formatStats(vochtigheidData, "%");
 document.getElementById("drukStats").textContent = formatStats(drukData, " hPa");
-document.getElementById("countInfo").textContent = `${labels.length} metingen geladen`;
+document.getElementById("countInfo").textContent = `${labels.length} measurements loaded`;
 
 if (labels.length) {
     const latestLabel = labels[labels.length - 1];
-    document.getElementById("lastUpdateInfo").textContent = `Laatste datapunt: ${latestLabel}`;
+    document.getElementById("lastUpdateInfo").textContent = `Latest data point: ${latestLabel}`;
 } else {
-    document.getElementById("lastUpdateInfo").textContent = "Geen data beschikbaar";
+    document.getElementById("lastUpdateInfo").textContent = "No data available";
 }
 
 updateComfortStatus(temperaturen, vochtigheidData);
 
 if (labels.length) {
-    createChart("tempChart", `Temperatuur ${TEMP_UNIT_LABEL}`, temperaturen, "red");
-    createChart("vochtChart", "Vochtigheid %", vochtigheidData, "blue");
-    createChart("drukChart", "Druk hPa", drukData, "yellow");
+    createChart("tempChart", `Temperature ${TEMP_UNIT_LABEL}`, temperaturen, "red");
+    createChart("vochtChart", "Humidity %", vochtigheidData, "blue");
+    createChart("drukChart", "Pressure hPa", drukData, "yellow");
 }
 
 let refreshTimer = null;
@@ -109,18 +109,21 @@ applyRefreshInterval(Number(refreshSelect.value));
 
 const backToTopBtn = document.getElementById("backToTopBtn");
 window.addEventListener("scroll", () => {
-    backToTopBtn.style.display = window.scrollY > 200 ? "block" : "none";10
+    backToTopBtn.style.display = window.scrollY > 200 ? "block" : "none";
 });
 backToTopBtn.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
- function updateClock() {
-        const now = new Date();
-        const time = now.toLocaleTimeString('nl-NL', { hour12: false });
-        const clock = document.getElementById('liveClock');
-        if (clock) clock.textContent = time;
-      }
-      updateClock();
-      setInterval(updateClock, 1000);
-      const yearNow = document.getElementById('yearNow');
-      if (yearNow) yearNow.textContent = new Date().getFullYear();
+
+function updateClock() {
+    const now = new Date();
+    const time = now.toLocaleTimeString("en-GB", { hour12: false });
+    const clock = document.getElementById("liveClock");
+    if (clock) clock.textContent = time;
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+
+const yearNow = document.getElementById("yearNow");
+if (yearNow) yearNow.textContent = new Date().getFullYear();

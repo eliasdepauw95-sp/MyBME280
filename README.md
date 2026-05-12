@@ -21,7 +21,7 @@ WeatherStation/
 |-- README.md
 |-- WeatherstationESP32/
 |   `-- BME280nrwebserver.ino
-`-- weerstationServer/
+`-- WeatherstationServer/
     |-- app.py
     |-- db.py
     |-- sql/
@@ -79,7 +79,7 @@ Some BME280 modules use `0x77`, so change that in the sketch if needed.
 
 ## Server setup
 
-Open a terminal in `WeatherStation/weerstationServer`.
+Open a terminal in `WeatherStation/WeatherstationServer`.
 
 ### 1. Create the database
 
@@ -179,7 +179,7 @@ To keep the database small, the application deletes older rows and keeps only th
 ## Notes
 
 - The Flask app currently runs with `debug=True`, which is useful for development but not for production
-- The SQLite database path is relative, so start the server from the `weerstationServer` folder
+- The SQLite database path is relative, so start the server from the `WeatherstationServer` folder
 - The measurement interval in the ESP32 sketch is `300000 ms` which equals **5 minutes**
 
 ## Demo flow
