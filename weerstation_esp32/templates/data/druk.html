@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}weerstation{% endblock %}
+
+{% block content %}
+    <h1>weerstation</h1>
+    {% for druk in drukken %}
+        <p>Waarde: {{ druk.waarde }}</p>
+    {% endfor %}
+{% endblock %}

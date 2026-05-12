@@ -1,0 +1,6 @@
+-- database: ./weerstation.db
+
+DELETE FROM time;
+DELETE FROM temperatuur;
+DELETE FROM luchtvochtigheid;
+DELETE FROM luchtdruk;

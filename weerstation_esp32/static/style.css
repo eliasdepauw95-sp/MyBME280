@@ -1,0 +1,72 @@
+h1 {color: black;}
+body {font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      border: 2px solid #000000;
+   border-radius: 10px;
+   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+   cursor:not-allowed;}
+p {font-size: 16px;
+   color: #000000;}
+.navbar {font-weight: bold;
+       font-size: 24px;
+       color: #333333;
+       text-align: center;
+       margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+        cursor:crosshair;}
+
+/* Moved from templates/base.html */
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f7fbff 0%, #eef6ff 55%, #ffffff 100%);
+  scroll-behavior: smooth;
+}
+
+.app-shell {
+  min-height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+}
+
+.navbar {
+  box-shadow: 0 2px 12px rgba(30, 74, 115, 0.12);
+}
+
+.clock-pill {
+  border-radius: 999px;
+  background: #ffffff;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #dbe8f6;
+}
+
+footer {
+  color: #55708c;
+  font-size: 0.9rem;
+}
+
+/* Moved from templates/index.html inline styles */
+.latest-measurement {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: fit-content;
+  margin-bottom: 40px;
+}
+
+.refresh-select {
+  max-width: 180px;
+}
+
+.back-to-top-btn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  display: none;
+  z-index: 999;
+}

@@ -1,0 +1,76 @@
+﻿{% extends 'base.html' %}
+
+{% block title %}Weerstation{% endblock %}
+
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<h1>Weerstation</h1>
+
+<p>Welkom bij de weerstation pagina!</p>
+
+<div class="mb-3">
+    <small class="text-muted" id="countInfo"></small>
+</div>
+
+<div class="mb-3">
+    <span class="badge badge-info" id="statusBadge">Live</span>
+    <small class="text-muted ml-2" id="lastUpdateInfo"></small>
+</div>
+
+<!-- Laatste meting -->
+<div class="latest-measurement">
+    <h2>Laatste meting</h2>
+    <p>Tijd: {{ tijden[0]['tijdstip'] if tijden else 'Geen data' }}</p>
+    <p>Temperatuur: {{ temps[0]['waarde'] if temps else '-' }}&deg;C</p>
+    <p>Vochtigheid: {{ vochtigheid[0]['waarde'] if vochtigheid else '-' }}%</p>
+    <p>Druk: {{ drukken[0]['waarde'] if drukken else '-' }} hPa</p>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-4 mb-2">
+        <div class="card"><div class="card-body"><h5 class="card-title mb-1">Temperatuur</h5><p class="card-text mb-1" id="tempStats">-</p></div></div>
+    </div>
+    <div class="col-md-4 mb-2">
+        <div class="card"><div class="card-body"><h5 class="card-title mb-1">Vochtigheid</h5><p class="card-text mb-1" id="vochtStats">-</p></div></div>
+    </div>
+    <div class="col-md-4 mb-2">
+        <div class="card"><div class="card-body"><h5 class="card-title mb-1">Druk</h5><p class="card-text mb-1" id="drukStats">-</p></div></div>
+    </div>
+</div>
+
+<div class="mb-4 d-flex align-items-center flex-wrap">
+    <label for="refreshSelect" class="mb-0 mr-2">Auto-refresh:</label>
+    <select id="refreshSelect" class="form-control form-control-sm mr-2 refresh-select">
+        <option value="0">Uit</option>
+        <option value="30">Elke 30 seconden</option>
+        <option value="60" selected>Elke 60 seconden</option>
+        <option value="300">Elke 5 minuten</option>
+    </select>
+    <button class="btn btn-sm btn-outline-primary mb-2 mb-md-0" onclick="window.location.reload()">Nu verversen</button>
+</div>
+
+<h2 id="temperatuur">Temperatuur</h2>
+<canvas id="tempChart"></canvas>
+
+<h2 id="vochtigheid">Vochtigheid</h2>
+<canvas id="vochtChart"></canvas>
+
+<h2 id="druk">Druk</h2>
+<canvas id="drukChart"></canvas>
+
+<button
+    id="backToTopBtn"
+    class="btn btn-primary btn-sm back-to-top-btn"
+>
+    Omhoog
+</button>
+
+<script id="labels-data" type="application/json">{{ (tijden | map(attribute='tijdstip') | list)[::-1] | tojson }}</script>
+<script id="temperaturen-data" type="application/json">{{ (temps | map(attribute='waarde') | list)[::-1] | tojson }}</script>
+<script id="vochtigheid-data" type="application/json">{{ (vochtigheid | map(attribute='waarde') | list)[::-1] | tojson }}</script>
+<script id="druk-data" type="application/json">{{ (drukken | map(attribute='waarde') | list)[::-1] | tojson }}</script>
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+
+{% endblock %}
